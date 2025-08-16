@@ -1,41 +1,72 @@
-site_name: Cursor Starter Wiki
-site_description: Public wiki for Cursor Starter
-# site_url removed; set to a full URL if hosting statically (e.g., https://example.com/)
-repo_url: https://github.com/ngeshlew/cursorstarter
-repo_name: ngeshlew/cursorstarter
+site_name: AI Product Engineer Course
+site_description: Internal learning site for AI, LLMs, and a Rivet chatbot capstone
+# site_url: # set if hosting
+# repo_url: # optional
+# repo_name: # optional
+
 nav:
-  - Home: index.md
-  - Installation: Installation.md
-  - Getting Started: Getting-Started.md
-  - Modes: Modes.md
-  - Commit Mode: Commit-Mode.md
-  - Cursor Rules: Cursor-Rules.md
-  - Memory Bank: Memory-Bank.md
-  - Protection: Protection.md
-  - Commands CLI: Commands-CLI.md
-  - Integrating cursor_commands: Integrating-cursor_commands.md
-  - MCP: MCP.md
-  - Structure: Structure.md
-  - Troubleshooting: Troubleshooting.md
-docs_dir: wiki
+  - Overview: index.md
+  - Modules:
+      - Foundations: modules/foundations/index.md
+      - Transformers: modules/transformers/index.md
+      - Tokenization & Context: modules/token-context/index.md
+      - Prompting & Structured Outputs: modules/prompting-structured-outputs/index.md
+      - Streaming UX: modules/streaming-ux/index.md
+      - Multimodality: modules/multimodality/index.md
+      - Memory & State: modules/memory-state/index.md
+      - Retrieval (RAG): modules/rag/index.md
+      - Agents & Orchestration: modules/agents-orchestration/index.md
+      - Safety & Security: modules/safety-security/index.md
+      - Evaluation & Observability: modules/evaluation-observability/index.md
+      - Cost & Latency: modules/cost-latency/index.md
+      - Productization & MLOps: modules/productization-mlops/index.md
+      - AI UX & Behavior: modules/ai-ux-behavior/index.md
+      - Collaboration with Engineers: modules/collaboration-with-engineers/index.md
+      - Ecosystem Deep Dives: modules/ecosystem-deep-dives/index.md
+  - Perspectives: perspectives/index.md
+  - Capstone (Rivet Bot):
+      - Overview: capstone/index.md
+      - RAG & Knowledge: capstone/rag.md
+      - Rivet Flows: capstone/rivet.md
+      - Evaluation & Observability: capstone/evaluation.md
+      - Safety & Privacy: capstone/safety.md
+  - Competitors:
+      - Intercom Fin: competitors/fin-intercom.md
+      - Yellow.ai: competitors/yellow-ai.md
+  - News: news.md
+  - Glossary: glossary.md
+  - Progress: progress.md
+
+docs_dir: docs
 site_dir: site
 use_directory_urls: true
+
 theme:
   name: material
   features:
     - navigation.top
     - navigation.sections
     - content.code.copy
+    - toc.integrate
+
 plugins:
   - search
+  - tags
+  - glightbox
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+
 markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
   - toc:
       permalink: true
-  - tables
-  - admonition
-  - codehilite
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/ngeshlew/cursorstarter
-      name: GitHub
+
+extra_javascript:
+  - assets/js/progress.js
+extra_css:
+  - assets/css/progress.css

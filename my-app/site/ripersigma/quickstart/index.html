@@ -1,0 +1,1263 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Internal learning site for AI, LLMs, and a Rivet chatbot capstone">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>RIPER Sigma Quickstart - AI Product Engineer Course</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/css/progress.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#riper-sigma-quickstart" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AI Product Engineer Course" class="md-header__button md-logo" aria-label="AI Product Engineer Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Product Engineer Course
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              RIPER Sigma Quickstart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI Product Engineer Course" class="md-nav__button md-logo" aria-label="AI Product Engineer Course" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    AI Product Engineer Course
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modules
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/foundations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Foundations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/transformers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transformers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/token-context/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tokenization & Context
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/prompting-structured-outputs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompting & Structured Outputs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/streaming-ux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Streaming UX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/multimodality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multimodality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/memory-state/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Memory & State
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Retrieval (RAG)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/agents-orchestration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Agents & Orchestration
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/safety-security/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safety & Security
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/evaluation-observability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evaluation & Observability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/cost-latency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cost & Latency
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/productization-mlops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Productization & MLOps
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ai-ux-behavior/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI UX & Behavior
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/collaboration-with-engineers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Collaboration with Engineers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modules/ecosystem-deep-dives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ecosystem Deep Dives
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../perspectives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perspectives
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Capstone (Rivet Bot)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Capstone (Rivet Bot)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/rag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RAG & Knowledge
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/rivet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rivet Flows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/evaluation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Evaluation & Observability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstone/safety/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Safety & Privacy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Competitors
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Competitors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../competitors/fin-intercom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Intercom Fin
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../competitors/yellow-ai/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yellow.ai
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../news/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    News
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../progress/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Progress
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="riper-sigma-quickstart">RIPER Sigma Quickstart<a class="headerlink" href="#riper-sigma-quickstart" title="Permanent link">&para;</a></h1>
+<h2 id="prerequisites">📋 Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Cursor IDE</strong> installed and configured</li>
+<li><strong>Node.js</strong> v18+ (for MCP <code>npx</code> servers)</li>
+<li><strong>Project folder</strong> initialized</li>
+</ol>
+<h2 id="quick-setup-5-minutes">🎯 Quick Setup (5 minutes)<a class="headerlink" href="#quick-setup-5-minutes" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-install-framework">Step 1: Install Framework<a class="headerlink" href="#step-1-install-framework" title="Permanent link">&para;</a></h3>
+<pre><code class="language-bash"># If using the cursorstarter template, open the repo in Cursor then run:
+bash scripts/init.sh
+
+# Otherwise copy `.cursor/`, `memory-bank/`, and `scripts/` into your project root, then run:
+bash scripts/init.sh
+</code></pre>
+<h3 id="step-2-enable-core-framework">Step 2: Enable Core Framework<a class="headerlink" href="#step-2-enable-core-framework" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open Cursor IDE</li>
+<li>Go to Settings → Cursor Rules and enable:</li>
+<li><code>.cursor/rules/ripersigma105.mdc</code></li>
+<li><code>.cursor/rules/cursorstarter-core.mdc</code></li>
+<li><code>.cursor/rules/commit-mode.mdc</code></li>
+<li><code>.cursor/rules/code-protection.mdc</code></li>
+<li><code>.cursor/rules/permissions.mdc</code></li>
+<li><code>.cursor/rules/context.mdc</code></li>
+<li>Optional overlays:</li>
+<li><code>.cursor/rules/webdev-best-practices.mdc</code></li>
+<li><code>.cursor/rules/analytics-clarity.mdc</code></li>
+<li>In Cursor: Settings → Features → enable Codebase Indexing</li>
+</ol>
+<h3 id="step-3-initialize-memory-bank">Step 3: Initialize Memory Bank<a class="headerlink" href="#step-3-initialize-memory-bank" title="Permanent link">&para;</a></h3>
+<pre><code>/start
+</code></pre>
+<p>Or via CLI:</p>
+<pre><code class="language-bash">bash scripts/init.sh
+</code></pre>
+<p>This creates:
+- <code>/memory-bank/</code> folder (and <code>/memory-bank/backups/</code>)
+- Six memory files: <code>projectbrief.md</code>, <code>systemPatterns.md</code>, <code>techContext.md</code>, <code>activeContext.md</code>, <code>progress.md</code>, <code>protection.md</code></p>
+<h2 id="basic-usage">🔥 Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link">&para;</a></h2>
+<h3 id="mode-switching">Mode Switching<a class="headerlink" href="#mode-switching" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>/r</code> or <code>/research</code> - Research mode 🔍</li>
+<li><code>/i</code> or <code>/innovate</code> - Innovate mode 💡</li>
+<li><code>/p</code> or <code>/plan</code> - Plan mode 📝</li>
+<li><code>/e</code> or <code>/execute</code> - Execute mode ⚙️</li>
+<li><code>/rev</code> or <code>/review</code> - Review mode 🔎</li>
+</ul>
+<h3 id="code-protection">Code Protection<a class="headerlink" href="#code-protection" title="Permanent link">&para;</a></h3>
+<pre><code class="language-javascript">// !cp PROTECTED - Never modify
+function criticalFunction() {
+  // Core business logic
+}
+// !cp END-P
+
+// !cg GUARDED - Ask before changing
+function importantFunction() {
+  // Important logic
+}
+// !cg END-G
+</code></pre>
+<h3 id="context-management">Context Management<a class="headerlink" href="#context-management" title="Permanent link">&para;</a></h3>
+<pre><code>!af src/main.js        # Add file to context
+!ac validateUser()     # Add code reference
+!cm                    # Set mode-appropriate context
+!cc                    # Clear all context
+</code></pre>
+<h2 id="optional-mcp-services">🔌 Optional: MCP Services<a class="headerlink" href="#optional-mcp-services" title="Permanent link">&para;</a></h2>
+<h3 id="enable-services-choose-what-you-need">Enable Services (Choose what you need)<a class="headerlink" href="#enable-services-choose-what-you-need" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>GitHub Integration</strong>
+   <code>bash
+   npm install -g @modelcontextprotocol/server-github
+   export GITHUB_TOKEN=your_token</code></li>
+<li>Already listed in <code>.cursor/mcp.json</code> (service: <code>github</code>)</li>
+<li>
+<p>Use: <code>!gr pytorch</code> to search repos</p>
+</li>
+<li>
+<p><strong>Web Search</strong>
+   <code>bash
+   npm install -g @modelcontextprotocol/server-brave-search
+   export BRAVE_SEARCH_API_KEY=your_key</code></p>
+</li>
+<li>Already listed in <code>.cursor/mcp.json</code> (service: <code>brave-search</code>)</li>
+<li>
+<p>Use: <code>!ws AI frameworks</code> to search</p>
+</li>
+<li>
+<p><strong>Browser Automation</strong>
+   <code>bash
+   npm install -g @modelcontextprotocol/server-puppeteer</code></p>
+</li>
+<li>Already listed in <code>.cursor/mcp.json</code> (service: <code>puppeteer</code>)</li>
+<li>
+<p>Use: <code>!pn https://example.com</code> to navigate; <code>!ps name</code> for a screenshot</p>
+</li>
+<li>
+<p><strong>Docker</strong>
+   <code>bash
+   npm install -g docker-mcp
+   # Ensure Docker Desktop/daemon is running</code></p>
+</li>
+<li>Already listed in <code>.cursor/mcp.json</code> (service: <code>docker</code>)</li>
+<li>See: <code>docs/ripersigma/mcp/docker_setup.md</code> for available operations and examples</li>
+</ol>
+<h2 id="optional-bmad-enterprise">🏢 Optional: BMAD Enterprise<a class="headerlink" href="#optional-bmad-enterprise" title="Permanent link">&para;</a></h2>
+<h3 id="soft-migration-recommended-for-start">Soft Migration (Recommended for start)<a class="headerlink" href="#soft-migration-recommended-for-start" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Keep using memory banks</li>
+<li>Enable BMAD rule files in <code>.cursor/rules/</code>:</li>
+<li><code>bmad-roles.mdc</code> — Role system</li>
+<li><code>prd-system.mdc</code> — PRD management</li>
+<li><code>quality-gates.mdc</code> — Quality gates</li>
+<li><code>enterprise.mdc</code> — Enterprise workflows</li>
+</ol>
+<h3 id="commands">Commands<a class="headerlink" href="#commands" title="Permanent link">&para;</a></h3>
+<pre><code>!br Developer      # Switch to Developer role
+!prdn             # Create new PRD
+!kg               # Check current quality gate
+</code></pre>
+<h2 id="cheat-sheets">📚 Cheat Sheets<a class="headerlink" href="#cheat-sheets" title="Permanent link">&para;</a></h2>
+<h3 id="essential-commands">Essential Commands<a class="headerlink" href="#essential-commands" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+<th>Mode Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read files</td>
+<td>automatic</td>
+<td>Any</td>
+</tr>
+<tr>
+<td>Write code</td>
+<td>automatic</td>
+<td>EXECUTE</td>
+</tr>
+<tr>
+<td>Create plan</td>
+<td>automatic</td>
+<td>PLAN</td>
+</tr>
+<tr>
+<td>Search web</td>
+<td>!ws query</td>
+<td>NOT EXECUTE</td>
+</tr>
+<tr>
+<td>Take screenshot</td>
+<td>!ps name</td>
+<td>Any</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mode-permissions">Mode Permissions<a class="headerlink" href="#mode-permissions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Can Do</th>
+<th>Cannot Do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RESEARCH 🔍</td>
+<td>Read, analyze</td>
+<td>Write, modify</td>
+</tr>
+<tr>
+<td>INNOVATE 💡</td>
+<td>Read, suggest</td>
+<td>Implement</td>
+</tr>
+<tr>
+<td>PLAN 📝</td>
+<td>Read, design</td>
+<td>Execute</td>
+</tr>
+<tr>
+<td>EXECUTE ⚙️</td>
+<td>All operations</td>
+<td>Deviate from plan</td>
+</tr>
+<tr>
+<td>REVIEW 🔎</td>
+<td>Read, verify</td>
+<td>Modify</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-issues">🚨 Common Issues<a class="headerlink" href="#common-issues" title="Permanent link">&para;</a></h2>
+<h3 id="operation-not-permitted">"Operation not permitted"<a class="headerlink" href="#operation-not-permitted" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Check current mode with <code>[MODE: X]</code> </li>
+<li>Switch to the appropriate mode</li>
+<li>EXECUTE mode has most permissions</li>
+</ul>
+<h3 id="mcp-service-not-available">"MCP service not available"<a class="headerlink" href="#mcp-service-not-available" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Service not installed</li>
+<li>Environment variable not set</li>
+<li>Check <code>docs/ripersigma/mcp/</code> for setup guides</li>
+</ul>
+<h3 id="no-search-in-execute-mode">"No search in EXECUTE mode"<a class="headerlink" href="#no-search-in-execute-mode" title="Permanent link">&para;</a></h3>
+<ul>
+<li>This is intentional! </li>
+<li>Maintains focus during implementation</li>
+<li>Switch to RESEARCH/PLAN to search</li>
+</ul>
+<h2 id="pro-tips">💡 Pro Tips<a class="headerlink" href="#pro-tips" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Start Simple</strong>: Use the core framework first, add MCP/BMAD later</li>
+<li><strong>Mode Discipline</strong>: Let modes guide your workflow</li>
+<li><strong>Protection Markers</strong>: Use them for critical code</li>
+<li><strong>Context Awareness</strong>: Keep context focused and relevant</li>
+<li><strong>Gradual Adoption</strong>: Enable features as needed</li>
+<li><strong>Analytics</strong>: See <code>docs/analytics/Clarity.md</code> for Microsoft Clarity setup and a mode-aware checklist</li>
+<li><strong>Web.dev overlays</strong>: See <code>docs/webdev-integration.md</code> for PWA, Streams, Passkeys, and Web Vitals guidance across modes</li>
+</ol>
+<h2 id="next-steps">🎓 Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Read complete documentation in <code>/docs/</code></li>
+<li>Review the symbol reference guide</li>
+<li>Try a simple project with RIPER modes</li>
+<li>Enable MCP services one at a time</li>
+<li>Consider BMAD for team projects</li>
+</ol>
+<hr />
+<p><em>Framework Version: 1.0.5 | Quick Start v1.1</em></p>
+<h2 id="design-systems-integration">Design Systems Integration<a class="headerlink" href="#design-systems-integration" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Read <code>docs/design-systems/meta-guidelines.md</code></li>
+<li>Make a selection with <code>docs/design-systems/decision-tree.md</code></li>
+<li>Follow <code>docs/design-systems/mode-checklists.md</code> during each mode</li>
+<li>Record outcomes in <code>memory-bank/</code> files as indicated</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="August 16, 2025 20:48:05 UTC">August 16, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.sections", "content.code.copy", "toc.integrate"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="../../assets/js/progress.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

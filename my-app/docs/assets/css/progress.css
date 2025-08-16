@@ -1,0 +1,4 @@
+:root {
+  --progress-accent: #22c55e;
+}
+#progress-bar { background: var(--progress-accent); }

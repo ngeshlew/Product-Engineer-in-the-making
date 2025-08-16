@@ -1,11 +1,20 @@
 ---
-layout: home
-title: Cursor Starter
+title: Welcome
+slug: index
+tags: [overview]
+learning_objectives:
+  - Understand the course structure and capstone goals
+updated_at: "2025-08-16"
 ---
 
-# Cursor Starter
+# AI Product Engineer Course (Internal)
 
-Welcome to the Cursor Starter documentation.
+This internal site teaches AI and LLM concepts while building a customer‑service chatbot capstone (using Rivet). Content is attribution‑rich and compiled from curated sources.
 
-- Get started: [Installation]({{ '/installation.html' | relative_url }})
-- Project structure: [Structure]({{ '/Structure.html' | relative_url }})
+## What you'll find
+- Expert modules: theory → practice → evaluation
+- Capstone: Rivet flows, RAG over course content, safety, and observability
+- Perspectives: multiple authoritative sources per concept
+- Competitor watch and News
+
+Start with Modules, then follow the Capstone track.
