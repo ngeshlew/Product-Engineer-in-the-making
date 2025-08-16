@@ -15,8 +15,10 @@ case "${1:-help}" in
   execute) cc_execute ;;
   review) cc_review ;;
   commit) cc_commit ;;
+  research) cc_research ;;
+  innovate) cc_innovate ;;
   list)
-    echo "Core: init, plan, execute, review, commit"
+    echo "Core: init, plan, execute, review, commit, research, innovate"
     echo "Plugins:"
     cc_plugins_list
     ;;

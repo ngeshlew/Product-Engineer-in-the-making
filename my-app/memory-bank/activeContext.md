@@ -9,3 +9,9 @@
 - Sources to consult:
 - Findings:
 - Decisions:
+\n## Innovate (2025-08-16T22:46:16+00:00)
+- Ideas:
+- Experiments to try:
+- Design directions:
+- Assumptions and risks:
+- Metrics of success:

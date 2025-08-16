@@ -35,6 +35,26 @@ cc_commit() {
   echo "[commit] Example: feat(scope): concise description"
 }
 
+cc_research() {
+  echo "[research] Capture questions, hypotheses, sources, and decisions."
+  echo "\n## Research ($(date -Iseconds))" >> memory-bank/activeContext.md
+  echo "- Questions:" >> memory-bank/activeContext.md
+  echo "- Hypotheses:" >> memory-bank/activeContext.md
+  echo "- Sources to consult:" >> memory-bank/activeContext.md
+  echo "- Findings:" >> memory-bank/activeContext.md
+  echo "- Decisions:" >> memory-bank/activeContext.md
+}
+
+cc_innovate() {
+  echo "[innovate] Generate ideas and experiments based on research."
+  echo "\n## Innovate ($(date -Iseconds))" >> memory-bank/activeContext.md
+  echo "- Ideas:" >> memory-bank/activeContext.md
+  echo "- Experiments to try:" >> memory-bank/activeContext.md
+  echo "- Design directions:" >> memory-bank/activeContext.md
+  echo "- Assumptions and risks:" >> memory-bank/activeContext.md
+  echo "- Metrics of success:" >> memory-bank/activeContext.md
+}
+
 cc_help() {
   cat <<EOF
 cursor commands:
@@ -43,6 +63,8 @@ cursor commands:
   execute    Guidance for scoped changes
   review     Append a review note to progress
   commit     Guidance for Conventional Commits
+  research   Append a research section to activeContext
+  innovate   Append an innovate section to activeContext
   list       List available commands (including plugins)
   help       Show this help
 EOF
