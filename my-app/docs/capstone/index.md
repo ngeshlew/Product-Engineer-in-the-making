@@ -12,3 +12,7 @@ Build a grounded, safe, and observable chatbot using Rivet, powered by RAG over 
 - Deflection and resolution with citations
 - Streaming UX and tool actions
 - Safety (injection, PII), observability, and evals
+
+## Development
+- Build index: `python3 capstone/rag/index.py`
+- Start API: `uvicorn capstone.server.main:app --reload --port 8080`

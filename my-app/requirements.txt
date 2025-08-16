@@ -11,3 +11,7 @@ lxml==5.2.2
 Pillow==10.4.0
 markdownify==0.14.1
 PyYAML==6.0.2
+fastapi==0.115.2
+uvicorn==0.30.6
+faiss-cpu==1.8.0.post1
+sentence-transformers==3.0.1
