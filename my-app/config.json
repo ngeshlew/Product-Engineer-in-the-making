@@ -1,0 +1,12 @@
+{
+	"name": "ai-product-engineer-course",
+	"version": "0.1.0",
+	"description": "Internal learning site and capstone chatbot",
+	"capstoneModel": "llama3-8b",
+	"newsFeeds": [
+		"https://openai.com/blog/rss.xml",
+		"https://www.anthropic.com/news/rss.xml",
+		"https://ai.googleblog.com/atom.xml",
+		"https://deepmind.google/discover/feeds/blog.xml"
+	]
+}

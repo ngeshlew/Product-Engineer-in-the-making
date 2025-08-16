@@ -9,6 +9,10 @@
   - level: GUARDED
   - rationale: Theme mapping to tokens; edits can cause broad UI changes
   - notes: Run a11y and perf checks on change
+- file: src/critical.js
+  - level: CRITICAL
+  - rationale: Core logic path used across the project
+  - notes: Marked with !cc in file; require tests and approvals
 
 ## Violations
 - 
