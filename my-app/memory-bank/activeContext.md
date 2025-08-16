@@ -15,3 +15,6 @@
 - Design directions:
 - Assumptions and risks:
 - Metrics of success:
+\n## Plan (2025-08-16T22:51:17+00:00)
+- Target files: 
+- Acceptance checks: 
