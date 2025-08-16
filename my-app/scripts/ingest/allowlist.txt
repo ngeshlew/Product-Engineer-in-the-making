@@ -1,0 +1,5 @@
+https://docs.crewai.com/en/concepts/knowledge
+https://python.langchain.com/docs/concepts/streaming/
+https://python.langchain.com/docs/concepts/
+https://www.anthropic.com/engineering/building-effective-agents
+https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents

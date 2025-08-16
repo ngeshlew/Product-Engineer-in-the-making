@@ -1,0 +1,21 @@
+domains:
+  docs.crewai.com:
+    policy: copy
+    rate_limit_per_sec: 0.5
+    selectors:
+      main: article
+  python.langchain.com:
+    policy: copy
+    rate_limit_per_sec: 0.5
+    selectors:
+      main: main
+  www.anthropic.com:
+    policy: quote
+    rate_limit_per_sec: 0.3
+    selectors:
+      main: main
+  github.com:
+    policy: copy
+    rate_limit_per_sec: 0.3
+    selectors:
+      main: article
