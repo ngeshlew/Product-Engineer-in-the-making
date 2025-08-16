@@ -1,0 +1,38 @@
+name: Docs CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install MkDocs deps
+        run: |
+          pip install -r docs/requirements.txt
+
+      - name: Build MkDocs (strict)
+        run: |
+          mkdocs build --config-file docs/mkdocs.yml --strict
+
+      - name: Setup Node (for markdownlint)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install markdownlint-cli
+        run: |
+          npm install -g markdownlint-cli
+
+      - name: Lint markdown
+        run: |
+          markdownlint "wiki/**/*.md" "docs/**/*.md" --ignore "docs/site/**"
