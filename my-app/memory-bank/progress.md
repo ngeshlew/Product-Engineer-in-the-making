@@ -1,30 +1,24 @@
 # Progress
 
 ## Milestones
-- [ ] Design system selected and documented
-- [ ] Token pipeline implemented and published
-- [ ] Core components (buttons, forms, dialogs, navigation) implemented
-- [ ] Storybook with a11y and visual tests running in CI
-- [ ] First 3 screens built using system
+- [x] Site scaffold with modules/capstone/perspectives/competitors/news
+- [x] Ingestion pipeline stubbed and functional for starter URLs
+- [x] Progress toggle in UI
+- [ ] Capstone Rivet skeleton (UI+server+RAG wiring)
+- [ ] Evaluation harness baseline
 
 ## Features
-- [ ] 
+- [ ] RAG indexing of course docs
+- [ ] Rivet flows wired to retrieval and citations
+- [ ] News scheduled refresh
 
 ## Issues/Risks
-- [ ] A11y defects backlog size
-- [ ] Token coverage % (< 90%)
-- [ ] Performance budget breaches (LCP/INP)
+- [ ] Image license metadata completeness (internal‑copy policy OK but track sources)
+- [ ] Latency/cost unknown until capstone implementation
 
 ## Notes
-- 
+- Internal‑only distribution; ensure attributions remain present
 
-## Analytics (Clarity)
-- [ ] Snippet added and loaded in target environments
-- [ ] SPA `clarity("page")` wired on route change (if applicable)
-- [ ] Smart Events enabled and reviewed
-- [ ] Custom events list implemented
-- [ ] Session/page tags set (env, version, experiment)
-- [ ] Masking verified on sensitive elements
-- [ ] Consent gating verified (where required)
-- [ ] Installation verified in dashboard (live sessions)
-- [ ] Export API sample retrieved and reviewed 
+## Review (2025-08-16)
+- Summary: Implemented docs structure, ingestion with images and credits, news aggregator, progress UI
+- Test/build results: mkdocs build green 

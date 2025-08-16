@@ -1,38 +1,27 @@
 # Technical Context
 
 ## Technology Stack
-- Web Platform APIs: Service Workers, Web App Manifest, Streams API (`TransformStream`), WebAuthn (Passkeys), Credential Management API, File System Access, Web Share, Badging, Background Sync, App Shortcuts, URL/Protocol handlers
-- Observability: web‑vitals (client), Lighthouse (lab), RUM backend (custom endpoint)
+- Docs: MkDocs Material (Python), mkdocs-macros, mkdocs-glightbox
+- Ingestion: Python (requests, trafilatura, BeautifulSoup, lxml, Pillow)
+- News: Python (feedparser)
+- Capstone (planned): Rivet for conversation flows; RAG index with FAISS or LanceDB; FastAPI/Express for server; Tailwind+Radix or Material 3 for UI
 
 ## Environment
-- Target browsers: evergreen; ensure progressive enhancement for unsupported APIs
-- Device profiles: include mid‑tier mobile profile for testing and budgets
+- Local dev with Python venv; internal site only
+- Assets stored under `docs/assets/` (WebP), pages under `docs/`
 
 ## Dependencies / Libraries
-- `web-vitals` (collect LCP/INP/CLS with attribution)
-- Microsoft Clarity (client snippet) for analytics; optional Data Export consumer
+- requests, trafilatura, bs4, lxml, Pillow, feedparser, PyYAML
 
 ## Performance & Metrics
-- Core Web Vitals (field, p75): LCP ≤ 2.5 s, INP ≤ 200 ms, CLS ≤ 0.1
-- Guardrails: TTFB p75 ≤ 800 ms; TBT (lab) ≤ 200 ms
-- Measurement: field RUM with sampling (1–10%), attribution enabled; lab via Lighthouse/Throttle
-
-## Environment & Tooling
-- Clarity project id configured per environment (dev/stage/prod)
+- Docs build time < 2s on small sets; images compressed to WebP (quality 85)
 
 ## Build & CI
-- Optionally verify Clarity snippet presence in build artifacts for web apps
+- Future: GitHub Actions to run ingestion (check mode), build docs, link/license check, deploy preview; scheduled news refresh
 
 ## Security & Secrets
-<<<<<<< HEAD
-- Keep API tokens (for Data Export) and project ids in env or secret storage
-=======
-- 
+- No external secrets required yet; treat copied content as internal; maintain attributions in frontmatter and captions
 
-## Design System Implementation
-- Libraries: [SwiftUI/UIKit | Material Web/Compose | Carbon React/Web Components | Tailwind + Headless/Radix]
-- Token Source of Truth: [Style Dictionary | CSS Variables | Platform Theme]
-- Token Distribution: [npm pkg | platform module | CI publish]
-- Storybook/Docs: [Storybook + MDX; usage guidelines]
-- A11y/Visual/Perf Tests: [axe, testing-library, Playwright snapshots, Lighthouse budgets]
->>>>>>> b70844c (Add design systems integration framework and documentation)
+## Design System Implementation (capstone UI)
+- Tailwind + Radix (shadcn/ui) for fast accessible chat UI; design tokens to enable theming
+- Alternative: Material 3 for enterprise consistency
