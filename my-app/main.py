@@ -11,9 +11,8 @@ def define_env(env):
 		for p in sorted(sources_dir.glob('*.md')):
 			if p.name == 'index.md':
 				continue
-			rel = p.relative_to(docs)
-			title = p.stem
-			items.append(f"- [{title}]({rel.as_posix()})")
+			# Link using filename only so it works from sources/index.md
+			items.append(f"- [{p.stem}]({p.name})")
 		return "\n".join(items) if items else "(No sources ingested yet)"
 
 	env.macro(list_sources)
