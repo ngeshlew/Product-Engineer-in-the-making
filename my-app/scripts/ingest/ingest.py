@@ -86,6 +86,7 @@ def download_and_process_image(url: str, dest_dir: pathlib.Path) -> tuple[str, i
     img = Image.open(io.BytesIO(data)).convert('RGB')
     out_path = dest_dir / f"{h}.webp"
     img.save(out_path, format='WEBP', quality=85, method=6)
+    # Return path relative to DOCS root
     return str(out_path.relative_to(DOCS_DIR)), img.width, img.height
 
 
@@ -122,9 +123,11 @@ def ingest_one(url: str, registry: dict) -> None:
     asset_base = ASSETS_DIR / d / slug
     for img in images[:12]:  # cap to avoid huge pages
         try:
-            rel_path, w, h = download_and_process_image(img['url'], asset_base)
+            rel_path_from_docs, w, h = download_and_process_image(img['url'], asset_base)
+            # Compute path relative to docs/sources (where this markdown resides)
+            md_rel_path = os.path.relpath((DOCS_DIR / rel_path_from_docs), start=OUT_DIR)
             fig_entries.append({
-                'path': rel_path.replace('\\', '/'),
+                'path': md_rel_path.replace('\\', '/'),
                 'caption': img['caption'] or img['alt'] or 'Figure',
                 'credit_name': d,
                 'credit_url': img['url'],
