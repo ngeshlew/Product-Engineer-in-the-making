@@ -7,7 +7,7 @@ from rank_bm25 import BM25Okapi
 import numpy as np
 try:
 	import faiss
-	from sentence_transformers import SentenceTransformer, util as st_util
+	from sentence_transformers import SentenceTransformer, CrossEncoder
 	HAS_EMB = True
 except Exception:
 	HAS_EMB = False
@@ -19,6 +19,7 @@ INDEX_DIR = ROOT / 'capstone' / 'rag' / 'index'
 INDEX_DIR.mkdir(parents=True, exist_ok=True)
 
 EMB_MODEL = os.getenv('EMBED_MODEL', 'sentence-transformers/all-MiniLM-L6-v2')
+RERANK_MODEL = os.getenv('RERANK_MODEL', 'cross-encoder/ms-marco-MiniLM-L-6-v2')
 
 @dataclass
 class Doc:
@@ -65,7 +66,7 @@ def query_bm25(q: str, k: int = 5) -> List[dict]:
 	pairs = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)[:k]
 	res = [meta[i] for i, _ in pairs]
 	for r in res:
-		r['snippet'] = make_snippet(r['text'], q)
+		augment_with_span(r, q)
 	return res
 
 
@@ -74,6 +75,33 @@ def make_snippet(text: str, q: str, size: int = 280) -> str:
 	m = re.search(qt, text, flags=re.IGNORECASE) if qt else None
 	start = max(0, (m.start() if m else 0) - 40)
 	return text[start:start+size].replace('\n', ' ')
+
+
+def best_span(text: str, q: str, window: int = 240) -> Tuple[int, int, str]:
+	# naive: find first occurrence of any query token and return window
+	toks = [t for t in re.findall(r"\w+", q.lower()) if len(t) > 2]
+	if not toks:
+		return (0, 0, '')
+	positions = []
+	low = text.lower()
+	for t in toks:
+		idx = low.find(t)
+		if idx >= 0:
+			positions.append(idx)
+	if not positions:
+		return (0, 0, '')
+	start = max(0, min(positions) - 40)
+	end = min(len(text), start + window)
+	quote = text[start:end].replace('\n', ' ')
+	return (start, end, quote)
+
+
+def augment_with_span(rec: dict, q: str) -> None:
+	quote_start, quote_end, quote = best_span(rec['text'], q)
+	rec['quote'] = quote
+	rec['snippet'] = quote or make_snippet(rec['text'], q)
+	rec['quote_start'] = quote_start
+	rec['quote_end'] = quote_end
 
 # Embeddings
 
@@ -108,13 +136,26 @@ def query_embeddings(q: str, k: int = 5) -> List[dict]:
 	ids = ids[0].tolist()
 	res = [meta[i] for i in ids if i >= 0]
 	for r in res:
-		r['snippet'] = make_snippet(r['text'], q)
+		augment_with_span(r, q)
+	return res
+
+
+def rerank(q: str, cands: List[dict], top_k: int = 5) -> List[dict]:
+	if not HAS_EMB or not cands:
+		return cands[:top_k]
+	model = CrossEncoder(RERANK_MODEL)
+	pairs = [(q, c['text']) for c in cands]
+	scores = model.predict(pairs).tolist()
+	scored = sorted(zip(cands, scores), key=lambda x: x[1], reverse=True)[:top_k]
+	res = [c for c, s in scored]
+	for r in res:
+		augment_with_span(r, q)
 	return res
 
 
 def hybrid_search(q: str, k: int = 5) -> List[dict]:
-	bm = query_bm25(q, k)
-	em = query_embeddings(q, k)
+	bm = query_bm25(q, k*2)
+	em = query_embeddings(q, k*2)
 	seen = {}
 	combined = []
 	for r in bm + em:
@@ -123,7 +164,7 @@ def hybrid_search(q: str, k: int = 5) -> List[dict]:
 			continue
 		seen[key] = True
 		combined.append(r)
-	return combined[:k]
+	return rerank(q, combined, top_k=k)
 
 if __name__ == '__main__':
 	save_bm25()

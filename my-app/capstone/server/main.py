@@ -40,7 +40,7 @@ def build_index():
 @app.get('/search')
 def search(q: str = Query(..., min_length=2), request: Request = None):
 	hits = query_bm25(q, k=5)
-	return {'results': [{'title': h['title'], 'path': h['path']} for h in hits], 'traceparent': request.headers.get('traceparent') if request else None}
+	return {'results': [{'title': h['title'], 'path': h['path'], 'quote': h.get('quote'), 'snippet': h.get('snippet')} for h in hits], 'traceparent': request.headers.get('traceparent') if request else None}
 
 @app.post('/chat')
 def chat(payload: dict[str, Any], request: Request = None):
