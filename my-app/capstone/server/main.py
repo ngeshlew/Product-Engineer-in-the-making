@@ -7,6 +7,7 @@ from typing import Any
 
 from capstone.rag.index import query_bm25, save_bm25
 from capstone.server.otel import setup_tracing
+from capstone.server.flows import run_flow
 
 app = FastAPI(title="Capstone API")
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
@@ -21,7 +22,6 @@ async def log_requests(request: Request, call_next):
 	response = await call_next(request)
 	dur = int((time.time() - start) * 1000)
 	path = request.url.path
-	# add traceparent header passthrough if present
 	traceparent = request.headers.get('traceparent')
 	if traceparent:
 		response.headers['traceparent'] = traceparent
@@ -45,9 +45,7 @@ def search(q: str = Query(..., min_length=2), request: Request = None):
 @app.post('/chat')
 def chat(payload: dict[str, Any], request: Request = None):
 	q = payload.get('message', '')
-	hits = query_bm25(q, k=3)
-	return {
-		'message': f"You said: {q}",
-		'citations': [{'title': h['title'], 'path': h['path']} for h in hits],
-		'traceparent': request.headers.get('traceparent') if request else None
-	}
+	session_id = payload.get('session_id')
+	msg = run_flow(q, session_id=session_id)
+	msg['traceparent'] = request.headers.get('traceparent') if request else None
+	return msg

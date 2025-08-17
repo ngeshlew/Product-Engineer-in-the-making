@@ -19,3 +19,15 @@ domains:
     rate_limit_per_sec: 0.3
     selectors:
       main: article
+  www.langchain.com:
+    policy: copy
+    rate_limit_per_sec: 0.5
+    dynamic: true
+    wait_ms: 500
+    selectors:
+      main: main
+  langchain-ai.github.io:
+    policy: copy
+    rate_limit_per_sec: 0.5
+    selectors:
+      main: main
