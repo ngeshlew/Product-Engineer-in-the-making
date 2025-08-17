@@ -11,6 +11,8 @@
 		.msg.you{color:#111827}
 		.msg.bot{color:#065f46}
 		small{color:#6b7280}
+		.chips{display:inline-block;margin-left:8px;color:#374151;font-size:12px}
+		.chips code{background:#f3f4f6;padding:2px 4px;border-radius:4px}
 	</style>
 </head>
 <body>
@@ -23,20 +25,26 @@
 	<script>
 	const log = document.getElementById('log');
 	let sessionId = null;
-	function append(role, text, citations){
+	function append(role, text, citations, chips){
 		const div = document.createElement('div');
 		div.className = 'msg ' + role;
 		div.innerHTML = `<strong>${role==='you'?'You':'Bot'}:</strong> <span class="content"></span>`;
 		const span = div.querySelector('.content');
 		if (text){
-			// Simulate streaming
 			let i=0; const t=text; const timer=setInterval(()=>{ span.textContent = t.slice(0, ++i); if(i>=t.length) clearInterval(timer); }, 8);
+		}
+		if (chips){
+			const ch = document.createElement('span');
+			ch.className='chips';
+			ch.innerHTML = [chips.traceparent?`trace=<code>${chips.traceparent}</code>`:'', chips.model?`model=<code>${chips.model}</code>`:'', chips.latency?`latency=<code>${chips.latency}ms</code>`:''].filter(Boolean).join(' ');
+			div.appendChild(ch);
 		}
 		if (citations && citations.length){
 			const ul = document.createElement('ul');
 			ul.innerHTML = citations.map(c=>{
 				const rel = c.path.replace(/^.*docs\//,'');
-				return `<li><small><a href="/${rel}" target="_blank" rel="noopener">${c.title}</a></small></li>`;
+				const snip = c.snippet ? `<br/><small>${c.snippet}</small>` : '';
+				return `<li><small><a href="/${rel}" target="_blank" rel="noopener">${c.title}</a>${snip}</small></li>`;
 			}).join('');
 			div.appendChild(ul);
 		}
@@ -47,11 +55,12 @@
 		const q = document.getElementById('q').value.trim(); if(!q) return;
 		append('you', q);
 		document.getElementById('q').value = '';
+		let started = Date.now();
 		try{
 			const r = await fetch('http://localhost:8080/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({message:q, session_id: sessionId})});
 			const j = await r.json();
 			sessionId = j.session_id || sessionId;
-			append('bot', j.message, j.citations);
+			append('bot', j.message, j.citations, {traceparent: j.traceparent, latency: Date.now()-started});
 		}catch(err){ append('bot', 'Error: '+err.message); }
 	});
 	</script>

@@ -1,6 +1,6 @@
 import json, pathlib, re, uuid
 from typing import Any, Dict, List, Tuple
-from capstone.rag.index import query_bm25
+from capstone.rag.index import hybrid_search
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 FLOWS = ROOT / 'capstone' / 'rivet' / 'flows.json'
@@ -26,18 +26,29 @@ def classify_intent(text: str) -> str:
 	return 'faq'
 
 
+def action_handoff(state: Dict[str, Any]):
+	state['handoff'] = True
+	return {"ok": True}
+
+
+def action_ticket(state: Dict[str, Any], title: str, body: str):
+	state.setdefault('tickets', []).append({"title": title, "body": body})
+	return {"ok": True}
+
+
 def run_flow(query: str, session_id: str | None = None) -> Dict[str, Any]:
 	flow = json.loads(FLOWS.read_text())['flows'][0]
 	session_id, sess = get_session(session_id)
-
-	# greet (implicit)
 	intent = classify_intent(query)
-	results = query_bm25(query, k=5)
+	results = hybrid_search(query, k=5)
 	citations = [{
 		'title': r['title'],
-		'path': r['path']
+		'path': r['path'],
+		'snippet': r.get('snippet', '')
 	} for r in results]
 	needs_handoff = (intent == 'handoff')
+	if needs_handoff:
+		action_handoff(sess['state'])
 	answer = f"Intent: {intent}. Here's what I found with citations."
 	msg = {
 		'message': answer,
