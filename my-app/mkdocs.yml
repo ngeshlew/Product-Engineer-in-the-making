@@ -23,7 +23,9 @@ nav:
       - AI UX & Behavior: modules/ai-ux-behavior/index.md
       - Collaboration with Engineers: modules/collaboration-with-engineers/index.md
       - Ecosystem Deep Dives: modules/ecosystem-deep-dives/index.md
-  - Perspectives: perspectives/index.md
+  - Perspectives:
+      - Overview: perspectives/index.md
+      - LLM Fundamentals: perspectives/llm-fundamentals.md
   - Sources:
       - Overview: sources/index.md
   - Capstone (Rivet Bot):

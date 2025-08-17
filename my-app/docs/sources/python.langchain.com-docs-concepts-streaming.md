@@ -12,10 +12,10 @@ sources:
   title: python.langchain.com-docs-concepts-streaming
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-16'
+  retrieved_at: '2025-08-17'
   policy: copy
 figures: []
-updated_at: '2025-08-16'
+updated_at: '2025-08-17'
 completed: false
 ---
 
@@ -167,3 +167,5 @@ Please see the following how-to guides for specific examples of streaming in Lan
 For writing custom data to the stream, please see the following resources:
 - If using LangGraph, see how to stream custom data.
 - If using LCEL, see how to dispatch custom callback events.
+
+

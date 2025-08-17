@@ -12,10 +12,10 @@ sources:
   title: python.langchain.com-docs-concepts
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-16'
+  retrieved_at: '2025-08-17'
   policy: copy
 figures: []
-updated_at: '2025-08-16'
+updated_at: '2025-08-17'
 completed: false
 ---
 
@@ -44,3 +44,5 @@ configurable).
 temperature, and
 max_tokens.
 **Standard tests**: A defined set of unit and integration tests that all integrations must pass. **stream**: Use to stream output from a Runnable or a graph. **Tokenization**: The process of converting data into tokens and vice versa. **Tokens**: The basic unit that a language model reads, processes, and generates under the hood. **Tool artifacts**: Add artifacts to the output of a tool that will not be sent to the model, but will be available for downstream processing. **Tool binding**: Binding tools to models. **@tool**: Decorator for creating tools in LangChain. **Toolkits**: A collection of tools that can be used together. **ToolMessage**: Represents a message that contains the results of a tool execution. **Unit tests**: Tests that verify the correctness of individual components, run in isolation without access to the Internet. **Vector stores**: Datastores specialized for storing and efficiently searching vector embeddings. **with_structured_output**: A helper method for chat models that natively support tool calling to get structured output matching a given schema specified via Pydantic, JSON schema or a function. **with_types**: Method to overwrite the input and output types of a runnable. Useful when working with complex LCEL chains and deploying with LangServe.
+
+

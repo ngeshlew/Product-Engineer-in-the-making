@@ -24,6 +24,8 @@ TEMPLATE = """---
 > Synthesis: TODO
 
 {body}
+
+{figures_section}
 """
 
 
@@ -149,8 +151,15 @@ def ingest_one(url: str, registry: dict) -> None:
 
     fm = build_frontmatter(meta)
     body = body_text if body_text.strip() else f"(Content to be scraped from {url})"
+
+    # Render figures inline
+    figs_md = []
+    for i, f in enumerate(fig_entries, start=1):
+        figs_md.append(f"![{f['caption']}]({f['path']})\n<figcaption>Figure {i}. Credit: [{f['credit_name']}]({f['credit_url']}), License: {f['license']}</figcaption>")
+    figures_section = "\n\n".join(figs_md)
+
     out_path = out_dir / f"{slug}.md"
-    out_path.write_text(TEMPLATE.format(frontmatter=fm, title=title, body=body), encoding='utf-8')
+    out_path.write_text(TEMPLATE.format(frontmatter=fm, title=title, body=body, figures_section=figures_section), encoding='utf-8')
     print(f"Wrote {out_path}")
 
 

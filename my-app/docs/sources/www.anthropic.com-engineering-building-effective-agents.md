@@ -12,7 +12,7 @@ sources:
   title: www.anthropic.com-engineering-building-effective-agents
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-16'
+  retrieved_at: '2025-08-17'
   policy: quote
 figures:
 - path: assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/e7b97fc35541.webp
@@ -55,7 +55,7 @@ figures:
   credit_name: www.anthropic.com
   credit_url: https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F4b9a1f4eb63d5962a6e1746ac26bbc857cf3474f-2400x1666.png&w=3840&q=75
   license: internal-copy
-updated_at: '2025-08-16'
+updated_at: '2025-08-17'
 completed: false
 ---
 
@@ -170,3 +170,27 @@ One rule of thumb is to think about how much effort goes into human-computer int
 - Test how the model uses your tools: Run many example inputs in our workbench to see what mistakes the model makes, and iterate.
 - Poka-yoke your tools. Change the arguments so that it is harder to make mistakes.
 While building our agent for SWE-bench, we actually spent more time optimizing our tools than the overall prompt. For example, we found that the model would make mistakes with tools using relative filepaths after the agent had moved out of the root directory. To fix this, we changed the tool to always require absolute filepaths—and we found that the model used this method flawlessly.
+
+![The augmented LLM](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/e7b97fc35541.webp)
+<figcaption>Figure 1. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fd3083d3f40bb2b6f477901cc9a240738d3dd1371-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![The prompt chaining workflow](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/190994fc386e.webp)
+<figcaption>Figure 2. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F7418719e3dab222dccb379b8879e1dc08ad34c78-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![The routing workflow](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/a74d404aaa37.webp)
+<figcaption>Figure 3. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F5c0c0e9fe4def0b584c04d37849941da55e5e71c-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![The parallelization workflow](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/b7e384eb5411.webp)
+<figcaption>Figure 4. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F406bb032ca007fd1624f261af717d70e6ca86286-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![The orchestrator-workers workflow](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/1d85998e6a68.webp)
+<figcaption>Figure 5. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F8985fc683fae4780fb34eab1365ab78c7e51bc8e-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![The evaluator-optimizer workflow](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/9c9873b4e0a9.webp)
+<figcaption>Figure 6. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F14f51e6406ccb29e695da48b17017e899a6119c7-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![Autonomous agent](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/aed8cefcfb11.webp)
+<figcaption>Figure 7. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F58d9f10c985c4eb5d53798dea315f7bb5ab6249e-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+![High-level flow of a coding agent](assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/2f82b99cf57a.webp)
+<figcaption>Figure 8. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F4b9a1f4eb63d5962a6e1746ac26bbc857cf3474f-2400x1666.png&w=3840&q=75), License: internal-copy</figcaption>

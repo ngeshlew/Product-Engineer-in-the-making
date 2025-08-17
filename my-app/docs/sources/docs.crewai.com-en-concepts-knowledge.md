@@ -12,7 +12,7 @@ sources:
   title: docs.crewai.com-en-concepts-knowledge
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-16'
+  retrieved_at: '2025-08-17'
   policy: copy
 figures:
 - path: assets/docs.crewai.com/docs.crewai.com-en-concepts-knowledge/71bc45159c09.webp
@@ -25,7 +25,7 @@ figures:
   credit_name: docs.crewai.com
   credit_url: https://mintlify.s3.us-west-1.amazonaws.com/crewai/images/crew_only_logo.png
   license: internal-copy
-updated_at: '2025-08-16'
+updated_at: '2025-08-17'
 completed: false
 ---
 
@@ -607,3 +607,9 @@ One Time Knowledge
 Knowledge Management
 Production Best Practices
 CREWAI_STORAGE_DIR to a known location in production
+
+![light logo](assets/docs.crewai.com/docs.crewai.com-en-concepts-knowledge/71bc45159c09.webp)
+<figcaption>Figure 1. Credit: [docs.crewai.com](https://mintlify.s3.us-west-1.amazonaws.com/crewai/images/crew_only_logo.png), License: internal-copy</figcaption>
+
+![dark logo](assets/docs.crewai.com/docs.crewai.com-en-concepts-knowledge/71bc45159c09.webp)
+<figcaption>Figure 2. Credit: [docs.crewai.com](https://mintlify.s3.us-west-1.amazonaws.com/crewai/images/crew_only_logo.png), License: internal-copy</figcaption>

@@ -604,16 +604,85 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../perspectives/" class="md-nav__link">
+    
+    
+    
+      
         
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
   
   <span class="md-ellipsis">
     Perspectives
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Perspectives
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../perspectives/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../perspectives/llm-fundamentals/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LLM Fundamentals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1113,6 +1182,29 @@ One rule of thumb is to think about how much effort goes into human-computer int
 - Test how the model uses your tools: Run many example inputs in our workbench to see what mistakes the model makes, and iterate.
 - Poka-yoke your tools. Change the arguments so that it is harder to make mistakes.
 While building our agent for SWE-bench, we actually spent more time optimizing our tools than the overall prompt. For example, we found that the model would make mistakes with tools using relative filepaths after the agent had moved out of the root directory. To fix this, we changed the tool to always require absolute filepaths—and we found that the model used this method flawlessly.</p>
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/e7b97fc35541.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The augmented LLM" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/e7b97fc35541.webp" /></a></p>
+<figcaption>Figure 1. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2Fd3083d3f40bb2b6f477901cc9a240738d3dd1371-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/190994fc386e.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The prompt chaining workflow" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/190994fc386e.webp" /></a></p>
+<figcaption>Figure 2. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F7418719e3dab222dccb379b8879e1dc08ad34c78-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/a74d404aaa37.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The routing workflow" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/a74d404aaa37.webp" /></a></p>
+<figcaption>Figure 3. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F5c0c0e9fe4def0b584c04d37849941da55e5e71c-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/b7e384eb5411.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The parallelization workflow" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/b7e384eb5411.webp" /></a></p>
+<figcaption>Figure 4. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F406bb032ca007fd1624f261af717d70e6ca86286-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/1d85998e6a68.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The orchestrator-workers workflow" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/1d85998e6a68.webp" /></a></p>
+<figcaption>Figure 5. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F8985fc683fae4780fb34eab1365ab78c7e51bc8e-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/9c9873b4e0a9.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="The evaluator-optimizer workflow" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/9c9873b4e0a9.webp" /></a></p>
+<figcaption>Figure 6. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F14f51e6406ccb29e695da48b17017e899a6119c7-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/aed8cefcfb11.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="Autonomous agent" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/aed8cefcfb11.webp" /></a></p>
+<figcaption>Figure 7. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F58d9f10c985c4eb5d53798dea315f7bb5ab6249e-2401x1000.png&w=3840&q=75), License: internal-copy</figcaption>
+
+<p><a class="glightbox" href="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/2f82b99cf57a.webp" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="High-level flow of a coding agent" src="assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/2f82b99cf57a.webp" /></a></p>
+<figcaption>Figure 8. Credit: [www.anthropic.com](https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F4b9a1f4eb63d5962a6e1746ac26bbc857cf3474f-2400x1666.png&w=3840&q=75), License: internal-copy</figcaption>
 
 
 

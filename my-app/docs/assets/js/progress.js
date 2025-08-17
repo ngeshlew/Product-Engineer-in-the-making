@@ -14,8 +14,8 @@
 
   function updateHeader() {
     const map = getProgress();
-    const total = document.querySelectorAll('article.md-content__inner h1').length ? 1 : 1;
     const done = Object.values(map).filter(Boolean).length;
+    const total = Math.max(done, document.querySelectorAll('nav a.md-nav__link').length || 1);
     const ratio = total ? Math.min(1, done / total) : 0;
     let bar = document.getElementById('progress-bar');
     if (!bar) {
@@ -48,11 +48,76 @@
       toggle.dataset.state = mapNow[key] ? 'done' : 'todo';
       toggle.textContent = mapNow[key] ? 'Completed ✓' : 'Mark complete';
       updateHeader();
+      renderDashboard();
+    });
+  }
+
+  function collectAllPages() {
+    const links = Array.from(document.querySelectorAll('nav a.md-nav__link'));
+    const pages = links.map(a => ({ href: a.getAttribute('href'), title: a.textContent.trim() })).filter(p => p.href && !p.href.startsWith('#'));
+    // normalize hrefs to path-only keys
+    pages.forEach(p => { p.key = `progress:${new URL(p.href, location.origin).pathname}`; });
+    return pages;
+  }
+
+  function renderDashboard() {
+    const isProgressPage = /\/progress\/?(index\.html)?$/.test(location.pathname);
+    if (!isProgressPage) return;
+    const container = document.querySelector('article.md-content__inner');
+    if (!container) return;
+
+    let panel = document.getElementById('progress-dashboard');
+    if (!panel) {
+      panel = document.createElement('div');
+      panel.id = 'progress-dashboard';
+      container.appendChild(panel);
+    }
+
+    const pages = collectAllPages();
+    const map = getProgress();
+    const done = pages.filter(p => map[p.key]);
+    const todo = pages.filter(p => !map[p.key]);
+
+    const exportBtn = `<button id="pg-export" style="margin-right:8px">Export JSON</button>`;
+    const importBtn = `<label style="cursor:pointer"><input type="file" id="pg-import" accept="application/json" style="display:none">Import JSON</label>`;
+
+    panel.innerHTML = `
+      <h2>Overview</h2>
+      <p>${done.length} / ${pages.length} completed</p>
+      ${exportBtn}${importBtn}
+      <div style="display:flex; gap:24px; flex-wrap:wrap; margin-top:12px">
+        <div style="flex:1; min-width:260px">
+          <h3>Completed</h3>
+          <ul>${done.map(p => `<li><a href="${p.href}">${p.title}</a></li>`).join('') || '<li>(none)</li>'}</ul>
+        </div>
+        <div style="flex:1; min-width:260px">
+          <h3>Remaining</h3>
+          <ul>${todo.map(p => `<li><a href="${p.href}">${p.title}</a></li>`).join('') || '<li>(none)</li>'}</ul>
+        </div>
+      </div>
+    `;
+
+    const exportEl = document.getElementById('pg-export');
+    const importEl = document.getElementById('pg-import');
+    exportEl?.addEventListener('click', () => {
+      const data = new Blob([JSON.stringify(getProgress(), null, 2)], {type: 'application/json'});
+      const url = URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'progress.json'; a.click();
+      URL.revokeObjectURL(url);
+    });
+    importEl?.addEventListener('change', (e) => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => { try { setProgress(JSON.parse(reader.result)); updateHeader(); renderDashboard(); } catch {} };
+      reader.readAsText(file);
     });
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     injectToggle();
     updateHeader();
+    renderDashboard();
   });
 })();
