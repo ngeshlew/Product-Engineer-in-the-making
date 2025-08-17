@@ -34,6 +34,7 @@ nav:
       - Rivet Flows: capstone/rivet.md
       - Evaluation & Observability: capstone/evaluation.md
       - Safety & Privacy: capstone/safety.md
+      - Demo: capstone/demo.md
   - Competitors:
       - Intercom Fin: competitors/fin-intercom.md
       - Yellow.ai: competitors/yellow-ai.md

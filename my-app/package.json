@@ -5,6 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "mkdocs serve -a 0.0.0.0:8000",
-    "build": "mkdocs build"
+    "build": "mkdocs build",
+    "ingest": "python3 scripts/ingest/ingest.py",
+    "news": "python3 scripts/news/news.py",
+    "index": "python3 capstone/rag/index.py",
+    "api": "uvicorn capstone.server.main:app --host 0.0.0.0 --port 8080"
   }
 }
