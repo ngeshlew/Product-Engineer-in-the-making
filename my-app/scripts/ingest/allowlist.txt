@@ -3,3 +3,8 @@ https://python.langchain.com/docs/concepts/streaming/
 https://python.langchain.com/docs/concepts/
 https://www.anthropic.com/engineering/building-effective-agents
 https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents
+https://langchain-ai.github.io/langgraph/how-tos/streaming/
+https://www.langchain.com/langgraph
+https://python.langchain.com/docs/concepts/multimodality/
+https://www.nngroup.com/articles/ai-chatbots-discourage-error-checking/
+https://www.nngroup.com/articles/prompt-suggestions/

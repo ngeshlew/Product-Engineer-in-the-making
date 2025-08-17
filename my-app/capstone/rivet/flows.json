@@ -1,0 +1,21 @@
+{
+	"version": 1,
+	"flows": [
+		{
+			"id": "main",
+			"nodes": [
+				{"id": "greet", "type": "message", "text": "Hi! How can I help with customer support today?"},
+				{"id": "intent", "type": "classify", "labels": ["faq", "billing", "technical", "handoff"]},
+				{"id": "retrieve", "type": "tool", "name": "search", "inputs": ["query"], "outputs": ["results"]},
+				{"id": "answer", "type": "llm", "prompt": "Answer with citations.", "inputs": ["query", "results"]},
+				{"id": "escalate", "type": "action", "name": "handoff"}
+			],
+			"edges": [
+				{"from": "greet", "to": "intent"},
+				{"from": "intent", "to": "retrieve"},
+				{"from": "retrieve", "to": "answer"},
+				{"from": "answer", "to": "escalate", "condition": "needs_handoff"}
+			]
+		}
+	]
+}

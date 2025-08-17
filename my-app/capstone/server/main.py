@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 from fastapi import FastAPI, Query
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import json, pathlib, time
 from typing import Any
 
 from capstone.rag.index import query_bm25, save_bm25
+from capstone.server.otel import setup_tracing
 
 app = FastAPI(title="Capstone API")
+app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_methods=['*'], allow_headers=['*'])
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 INDEX_DIR = ROOT / 'capstone' / 'rag' / 'index'
+
+TRACING = setup_tracing()
 
 @app.middleware("http")
 async def log_requests(request, call_next):
