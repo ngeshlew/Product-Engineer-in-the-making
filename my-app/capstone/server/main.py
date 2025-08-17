@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 from fastapi import FastAPI, Query, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
-import json, pathlib, time
+import json, pathlib, time, asyncio
 from typing import Any
 
 from capstone.rag.index import query_bm25, save_bm25
@@ -48,4 +48,22 @@ def chat(payload: dict[str, Any], request: Request = None):
 	session_id = payload.get('session_id')
 	msg = run_flow(q, session_id=session_id)
 	msg['traceparent'] = request.headers.get('traceparent') if request else None
+	msg['model'] = 'miniLM+bm25'
+	msg['cost'] = 0
 	return msg
+
+@app.post('/chat/stream')
+async def chat_stream(payload: dict[str, Any], request: Request = None):
+	q = payload.get('message', '')
+	session_id = payload.get('session_id')
+	msg = run_flow(q, session_id=session_id)
+	traceparent = request.headers.get('traceparent') if request else None
+	async def gen():
+		content = msg['message']
+		for i in range(1, len(content)+1):
+			chunk = content[:i]
+			yield f"data: {json.dumps({'delta': chunk[-1], 'traceparent': traceparent, 'model':'miniLM+bm25','cost':0})}\n\n"
+			await asyncio.sleep(0.01)
+		# final payload with citations
+		yield f"data: {json.dumps({'done': True, 'citations': msg['citations']})}\n\n"
+	return StreamingResponse(gen(), media_type='text/event-stream')

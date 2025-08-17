@@ -23,9 +23,15 @@
 - Acceptance checks: Ingestion writes Markdown with frontmatter and images; News page generates; Page toggle works
 
 ## Execute (2025-08-16)
-- Implemented ingestion pipeline (requests+trafilatura+bs4+Pillow) with local images + credits
-- Generated starter source pages and built site successfully
-- Added progress toggle and capstone scaffolding
+- Implemented hybrid retrieval (BM25+embeddings) with cross-encoder reranker and quote-level citations
+- Flow runner uses sqlite-backed sessions; actions wired (ticket create) with retries
+- Added SSE endpoint for streaming; UI shows trace/latency chips
+- Expanded eval and CI to start API, build index, and publish report
+- OTLP endpoint configurable; ingestion adds snapshots, license normalization, and policy checks
+
+## Risks
+- Embedding/reranker models increase build time and CI cost
+- Streaming remains SSE (WebSocket upgrade later)
 
 ## Protection
 - Critical sections identified for protection. Annotate with markers per `.cursor/rules/code-protection.mdc` (e.g., `!cp`, `!cc`).

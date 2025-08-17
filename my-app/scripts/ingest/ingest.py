@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, io, re, sys, time, hashlib, urllib.parse, pathlib, textwrap
+import os, io, re, sys, time, hashlib, urllib.parse, pathlib, textwrap, json
 from datetime import datetime, timezone
 import requests
 from requests.adapters import HTTPAdapter, Retry
@@ -34,6 +34,9 @@ TEMPLATE = """---
 
 {figures_section}
 """
+
+SNAP_DIR = ROOT / 'scripts' / 'ingest' / 'snapshots'
+SNAP_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def slugify(url: str) -> str:
@@ -136,9 +139,18 @@ def build_frontmatter(meta: dict) -> str:
     return yaml.safe_dump(ordered, sort_keys=False).strip()
 
 
+def policy_allowed(dom_conf: dict) -> bool:
+    # internal copy allowed; otherwise enforce quote policy
+    pol = (dom_conf or {}).get('policy', 'copy')
+    return pol in ('copy', 'quote', 'summary')
+
+
 def ingest_one(url: str, registry: dict) -> None:
     d = domain(url)
     dom_conf = registry.get('domains', {}).get(d, {})
+    if not policy_allowed(dom_conf):
+        print(f"Skip {url}: policy disallows")
+        return
     policy = dom_conf.get('policy', 'copy')
     selector = dom_conf.get('selectors', {}).get('main')
     use_dynamic = bool(dom_conf.get('dynamic', False))
@@ -146,6 +158,12 @@ def ingest_one(url: str, registry: dict) -> None:
     rate = float(dom_conf.get('rate_limit_per_sec', 0.5) or 0.5)
 
     html = fetch(url, use_dynamic=use_dynamic, wait_ms=wait_ms)
+    # snapshot and dedupe
+    h = hashlib.sha1(html.encode('utf-8')).hexdigest()[:12]
+    snap_path = SNAP_DIR / f"{slugify(url)}-{h}.html"
+    if not snap_path.exists():
+        snap_path.write_text(html, encoding='utf-8')
+
     body_text, images = extract_main(html, url, selector)
 
     slug = slugify(url)
@@ -158,14 +176,13 @@ def ingest_one(url: str, registry: dict) -> None:
     for img in images[:12]:  # cap to avoid huge pages
         try:
             rel_path_from_docs, w, h = download_and_process_image(img['url'], asset_base)
-            # Compute path relative to docs/sources (where this markdown resides)
             md_rel_path = os.path.relpath((DOCS_DIR / rel_path_from_docs), start=OUT_DIR)
             fig_entries.append({
                 'path': md_rel_path.replace('\\', '/'),
                 'caption': img['caption'] or img['alt'] or 'Figure',
                 'credit_name': d,
                 'credit_url': img['url'],
-                'license': 'internal-copy'
+                'license': dom_conf.get('license', 'internal-copy')
             })
         except Exception:
             continue
@@ -178,7 +195,7 @@ def ingest_one(url: str, registry: dict) -> None:
             'url': url,
             'title': title,
             'author': '',
-            'license': 'internal-copy',
+            'license': dom_conf.get('license', 'internal-copy'),
             'retrieved_at': datetime.now(timezone.utc).strftime('%Y-%m-%d'),
             'policy': policy,
         }],
