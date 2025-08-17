@@ -13,5 +13,5 @@ markdownify==0.14.1
 PyYAML==6.0.2
 fastapi==0.115.2
 uvicorn==0.30.6
-faiss-cpu==1.8.0.post1
-sentence-transformers==3.0.1
+rank-bm25==0.2.2
+playwright==1.48.0
