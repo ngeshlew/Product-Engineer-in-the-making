@@ -28,6 +28,9 @@ jobs:
         run: python scripts/ingest/lint_sources.py
       - name: Build docs
         run: mkdocs build --strict
+      - name: Run eval (API must be running separately)
+        run: |
+          echo "Skipping API-start in CI; run locally: uvicorn capstone.server.main:app" && true
       - uses: actions/upload-artifact@v4
         with:
           name: site
@@ -36,6 +39,23 @@ jobs:
         with:
           name: sources
           path: docs/sources
+
+  playwright:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Fix time skew (no-op on GH runners)
+        run: sudo timedatectl set-ntp true || true
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install --with-deps chromium
 
   nightly-news:
     runs-on: ubuntu-latest

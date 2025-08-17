@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 import json, pathlib, time
@@ -16,11 +16,15 @@ INDEX_DIR = ROOT / 'capstone' / 'rag' / 'index'
 TRACING = setup_tracing()
 
 @app.middleware("http")
-async def log_requests(request, call_next):
+async def log_requests(request: Request, call_next):
 	start = time.time()
 	response = await call_next(request)
 	dur = int((time.time() - start) * 1000)
 	path = request.url.path
+	# add traceparent header passthrough if present
+	traceparent = request.headers.get('traceparent')
+	if traceparent:
+		response.headers['traceparent'] = traceparent
 	print(f"[req] {request.method} {path} {dur}ms {response.status_code}")
 	return response
 
@@ -34,16 +38,16 @@ def build_index():
 	return {'ok': True}
 
 @app.get('/search')
-def search(q: str = Query(..., min_length=2)):
+def search(q: str = Query(..., min_length=2), request: Request = None):
 	hits = query_bm25(q, k=5)
-	return {'results': [{'title': h['title'], 'path': h['path']} for h in hits]}
+	return {'results': [{'title': h['title'], 'path': h['path']} for h in hits], 'traceparent': request.headers.get('traceparent') if request else None}
 
 @app.post('/chat')
-def chat(payload: dict[str, Any]):
-	# Stub Rivet flow: echo and search context
+def chat(payload: dict[str, Any], request: Request = None):
 	q = payload.get('message', '')
 	hits = query_bm25(q, k=3)
 	return {
 		'message': f"You said: {q}",
-		'citations': [{'title': h['title'], 'path': h['path']} for h in hits]
+		'citations': [{'title': h['title'], 'path': h['path']} for h in hits],
+		'traceparent': request.headers.get('traceparent') if request else None
 	}

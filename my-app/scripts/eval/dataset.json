@@ -1,0 +1,5 @@
+[
+  {"q": "What is RAG?", "expect_keywords": ["retrieval", "augmentation", "documents"]},
+  {"q": "How to stream model outputs?", "expect_keywords": ["stream", "token", "SSE"]},
+  {"q": "What are agents?", "expect_keywords": ["tool", "plan", "orchestrate"]}
+]
