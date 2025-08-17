@@ -1,4 +1,5 @@
 from typing import Optional
+import os
 
 def setup_tracing(service_name: str = "capstone-api") -> Optional[object]:
 	try:
@@ -9,7 +10,9 @@ def setup_tracing(service_name: str = "capstone-api") -> Optional[object]:
 		from opentelemetry.sdk.trace.export import BatchSpanProcessor
 		resource = Resource.create({"service.name": service_name})
 		provider = TracerProvider(resource=resource)
-		exporter = OTLPSpanExporter()
+		endpoint = os.getenv('OTEL_EXPORTER_OTLP_ENDPOINT')
+		headers = os.getenv('OTEL_EXPORTER_OTLP_HEADERS')
+		exporter = OTLPSpanExporter(endpoint=endpoint, headers=headers) if endpoint else OTLPSpanExporter()
 		processor = BatchSpanProcessor(exporter)
 		provider.add_span_processor(processor)
 		trace.set_tracer_provider(provider)

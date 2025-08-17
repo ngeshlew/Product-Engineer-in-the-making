@@ -28,9 +28,20 @@ jobs:
         run: python scripts/ingest/lint_sources.py
       - name: Build docs
         run: mkdocs build --strict
-      - name: Run eval (API must be running separately)
+      - name: Start API (background)
         run: |
-          echo "Skipping API-start in CI; run locally: uvicorn capstone.server.main:app" && true
+          nohup uvicorn capstone.server.main:app --host 0.0.0.0 --port 8080 >/dev/null 2>&1 &
+          echo $! > api.pid
+          sleep 2
+      - name: Build BM25 index
+        run: python capstone/rag/index.py
+      - name: Run eval
+        run: |
+          python scripts/eval/run_eval.py || true
+      - name: Stop API
+        if: always()
+        run: |
+          kill $(cat api.pid) || true
       - uses: actions/upload-artifact@v4
         with:
           name: site
@@ -39,6 +50,10 @@ jobs:
         with:
           name: sources
           path: docs/sources
+      - uses: actions/upload-artifact@v4
+        with:
+          name: eval-report
+          path: scripts/eval/report.json
 
   playwright:
     runs-on: ubuntu-latest
