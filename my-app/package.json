@@ -9,6 +9,7 @@
     "ingest": "python3 scripts/ingest/ingest.py",
     "news": "python3 scripts/news/news.py",
     "index": "python3 capstone/rag/index.py",
-    "api": "uvicorn capstone.server.main:app --host 0.0.0.0 --port 8080"
+    "api": "uvicorn capstone.server.main:app --host 0.0.0.0 --port 8080",
+    "qa": ".venv/bin/python tests/smoke_search.py && .venv/bin/python tests/retrieval_eval.py"
   }
 }

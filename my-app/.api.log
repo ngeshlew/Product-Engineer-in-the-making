@@ -1,11 +1,17 @@
 nohup: ignoring input
-INFO:     Started server process [6407]
+INFO:     Started server process [11342]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
-[req] GET /health 0ms 200
-INFO:     127.0.0.1:42844 - "GET /health HTTP/1.1" 200 OK
-[req] GET /search 660ms 200
-INFO:     127.0.0.1:39254 - "GET /search?q=stream HTTP/1.1" 200 OK
-[req] GET /search 541ms 200
-INFO:     127.0.0.1:42324 - "GET /search?q=stream HTTP/1.1" 200 OK
+[req] GET /health 1ms 200
+INFO:     127.0.0.1:35094 - "GET /health HTTP/1.1" 200 OK
+[req] GET /search 361ms 200
+INFO:     127.0.0.1:35106 - "GET /search?q=stream HTTP/1.1" 200 OK
+[req] GET /search 283ms 200
+INFO:     127.0.0.1:35120 - "GET /search?q=stream%20outputs HTTP/1.1" 200 OK
+[req] GET /search 613ms 200
+INFO:     127.0.0.1:35134 - "GET /search?q=multimodality HTTP/1.1" 200 OK
+[req] GET /search 271ms 200
+INFO:     127.0.0.1:35142 - "GET /search?q=stream%20outputs HTTP/1.1" 200 OK
+[req] GET /search 286ms 200
+INFO:     127.0.0.1:35158 - "GET /search?q=multimodality HTTP/1.1" 200 OK
