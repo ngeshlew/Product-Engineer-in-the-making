@@ -1,6 +1,6 @@
 site_name: AI Product Engineer Course
 site_description: Internal learning site for AI, LLMs, and a Rivet chatbot capstone
-# site_url: # set if hosting
+site_url: https://ngeshlew.github.io/Product-Engineer-in-the-making/
 # repo_url: # optional
 # repo_name: # optional
 
@@ -41,6 +41,7 @@ nav:
   - News: news.md
   - Glossary: glossary.md
   - Progress: progress.md
+  - Search: search.md
 
 docs_dir: docs
 site_dir: site
@@ -73,5 +74,6 @@ markdown_extensions:
 
 extra_javascript:
   - assets/js/progress.js
+  - assets/js/clarity.js
 extra_css:
   - assets/css/progress.css

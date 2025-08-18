@@ -3,8 +3,8 @@ title: python.langchain.com-docs-concepts
 slug: python.langchain.com-docs-concepts
 tags:
 - source
-why_for_designers: TODO
-bot_application: TODO
+why_for_designers: Helps scope features and constraints by naming the core building blocks (chat models, tools, memory, retrieval, streaming, LCEL, tracing, evaluation) so UX flows align with technical realities early.
+bot_application: Define chat UX, tool-calling boundaries, memory policy, and evaluation gates; start with runnable pipelines (LCEL), add tools selectively, and treat evaluation as a first‑class deliverable.
 collaboration_prompts:
 - What retrieval strategy applies here?
 sources:
@@ -21,7 +21,7 @@ completed: false
 
 # python.langchain.com-docs-concepts
 
-> Synthesis: TODO
+> Synthesis: The LangChain Concepts guide maps the primitives used to build LLM apps: chat models, tools (and tool calling), structured outputs, memory, retrieval, streaming, LCEL pipelines, tracing, and evaluation. For product engineers, this is the checklist to translate product requirements into reliable, observable flows. Start with a runnable pipeline, add tools only where user value requires them, and wire evaluation from day one.
 
 # Conceptual guide
 This guide provides explanations of the key concepts behind the LangChain framework and AI applications more broadly.

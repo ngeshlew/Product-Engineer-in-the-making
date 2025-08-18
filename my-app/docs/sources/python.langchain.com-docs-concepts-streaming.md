@@ -3,8 +3,8 @@ title: python.langchain.com-docs-concepts-streaming
 slug: python.langchain.com-docs-concepts-streaming
 tags:
 - source
-why_for_designers: TODO
-bot_application: TODO
+why_for_designers: Streaming reduces perceived latency and increases trust via progressive disclosure; plan UI states (typing, partial responses, retries) and accessibility from the start.
+bot_application: Implement SSE/websocket streaming, show incremental tokens with a stable layout, include a final summary with citations, and measure latency/abort rates.
 collaboration_prompts:
 - What retrieval strategy applies here?
 sources:
@@ -21,7 +21,7 @@ completed: false
 
 # python.langchain.com-docs-concepts-streaming
 
-> Synthesis: TODO
+> Synthesis: Streaming is a UX capability as much as a technical one. LangChain exposes streaming across components so users see progress and partial outputs while work continues. Design the conversation UI to gracefully reveal tokens, preserve layout stability (avoid CLS), and end with a verified final message and citations.
 
 # Streaming
 **Streaming** is crucial for enhancing the responsiveness of applications built on LLMs. By displaying output progressively, even before a complete response is ready, streaming significantly improves user experience (UX), particularly when dealing with the latency of LLMs.

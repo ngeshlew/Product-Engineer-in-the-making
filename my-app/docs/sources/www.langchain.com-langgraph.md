@@ -3,8 +3,8 @@ title: www.langchain.com-langgraph
 slug: www.langchain.com-langgraph
 tags:
 - source
-why_for_designers: TODO
-bot_application: TODO
+why_for_designers: Establishes patterns to control complex multi‑step/agent flows with guardrails; align UX affordances (status, retries) to orchestration.
+bot_application: Model multi‑node flows (retrieve‑plan‑act‑review), surface state transitions in UI, and add quality loops to prevent off‑policy behavior.
 collaboration_prompts:
 - What retrieval strategy applies here?
 sources:
@@ -26,7 +26,7 @@ completed: false
 
 # www.langchain.com-langgraph
 
-> Synthesis: TODO
+> Synthesis: LangGraph frames LLM apps as controllable cognitive architectures: single/multi‑agent, sequential or hierarchical. Use it when features require clear state transitions, tool orchestration, and guardrails.
 
 ## Controllable cognitive architecture for any task
 LangGraph's flexible framework supports diverse control flows â single agent, multi-agent, hierarchical, sequential â and robustly handles realistic, complex scenarios.

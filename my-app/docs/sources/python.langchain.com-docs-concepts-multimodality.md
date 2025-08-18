@@ -3,8 +3,8 @@ title: python.langchain.com-docs-concepts-multimodality
 slug: python.langchain.com-docs-concepts-multimodality
 tags:
 - source
-why_for_designers: TODO
-bot_application: TODO
+why_for_designers: Clarifies which inputs/outputs are supported and how that impacts UX (e.g., image/file upload flows, fallbacks, and privacy for media).
+bot_application: Start text‑only retrieval; add image/file inputs behind flags; document supported providers and add redaction/storage policies for media.
 collaboration_prompts:
 - What retrieval strategy applies here?
 sources:
@@ -21,7 +21,7 @@ completed: false
 
 # python.langchain.com-docs-concepts-multimodality
 
-> Synthesis: TODO
+> Synthesis: Multimodality spans inputs (images, audio, files) and outputs (images, audio). LangChain normalizes provider formats for chat models. For most enterprise chatbots, begin with text RAG; add image/file inputs when there’s a clear user need, and document storage/consent for media.
 
 # Multimodality
 ## Overview

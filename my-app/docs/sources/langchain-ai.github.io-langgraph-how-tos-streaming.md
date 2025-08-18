@@ -3,8 +3,8 @@ title: langchain-ai.github.io-langgraph-how-tos-streaming
 slug: langchain-ai.github.io-langgraph-how-tos-streaming
 tags:
 - source
-why_for_designers: TODO
-bot_application: TODO
+why_for_designers: Different stream modes (values, updates, messages) let you communicate progress clearly—use them to design transparent agent UIs.
+bot_application: Expose node/step updates in the UI, add a compact progress panel, and stream tokens for the active LLM node; fallback to non‑streaming gracefully.
 collaboration_prompts:
 - What retrieval strategy applies here?
 sources:
@@ -21,7 +21,7 @@ completed: false
 
 # langchain-ai.github.io-langgraph-how-tos-streaming
 
-> Synthesis: TODO
+> Synthesis: LangGraph provides multiple streaming modes for agent workflows. Use updates/messages to reveal graph progress and token streams; this improves transparency and debuggability without overwhelming the user.
 
 # Stream outputs¶
 You can stream outputs from a LangGraph agent or workflow.
