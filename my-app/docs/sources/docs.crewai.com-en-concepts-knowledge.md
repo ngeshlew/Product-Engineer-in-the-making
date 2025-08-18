@@ -12,7 +12,7 @@ sources:
   title: docs.crewai.com-en-concepts-knowledge
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-17'
+  retrieved_at: '2025-08-18'
   policy: copy
 figures:
 - path: ../assets/docs.crewai.com/docs.crewai.com-en-concepts-knowledge/71bc45159c09.webp
@@ -25,7 +25,7 @@ figures:
   credit_name: docs.crewai.com
   credit_url: https://mintlify.s3.us-west-1.amazonaws.com/crewai/images/crew_only_logo.png
   license: internal-copy
-updated_at: '2025-08-17'
+updated_at: '2025-08-18'
 completed: false
 ---
 

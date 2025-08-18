@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import json, pathlib, time, asyncio
 from typing import Any
 
-from capstone.rag.index import query_bm25, save_bm25
+from capstone.rag.index import query_bm25, hybrid_search, save_bm25, warm_models
 from capstone.server.otel import setup_tracing
 from capstone.server.flows import run_flow
 
@@ -15,6 +15,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 INDEX_DIR = ROOT / 'capstone' / 'rag' / 'index'
 
 TRACING = setup_tracing()
+warm_models()
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
@@ -39,7 +40,7 @@ def build_index():
 
 @app.get('/search')
 def search(q: str = Query(..., min_length=2), request: Request = None):
-	hits = query_bm25(q, k=5)
+	hits = hybrid_search(q, k=5)
 	return {'results': [{'title': h['title'], 'path': h['path'], 'quote': h.get('quote'), 'snippet': h.get('snippet')} for h in hits], 'traceparent': request.headers.get('traceparent') if request else None}
 
 @app.post('/chat')

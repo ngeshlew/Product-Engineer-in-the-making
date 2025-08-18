@@ -838,6 +838,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    RAG & Knowledge
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -847,6 +858,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build-indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build Indexes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      API Search
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1110,6 +1176,29 @@
 
 <h1 id="rag-knowledge">RAG &amp; Knowledge<a class="headerlink" href="#rag-knowledge" title="Permanent link">&para;</a></h1>
 <p>Index course pages, store embeddings, re‑rank results, and cite sources inline.</p>
+<h2 id="environment">Environment<a class="headerlink" href="#environment" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>EMBED_MODEL</code> (default: <code>sentence-transformers/all-MiniLM-L6-v2</code>)</li>
+<li><code>RERANK_MODEL</code> (default: <code>cross-encoder/ms-marco-MiniLM-L-6-v2</code>)</li>
+<li>Optional tracing:</li>
+<li><code>OTEL_EXPORTER_OTLP_ENDPOINT</code></li>
+<li><code>OTEL_EXPORTER_OTLP_HEADERS</code></li>
+</ul>
+<h2 id="build-indexes">Build Indexes<a class="headerlink" href="#build-indexes" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">source .venv/bin/activate  # if using venv
+npm run ingest              # fetch sources into docs/sources
+python3 capstone/rag/index.py  # builds BM25 + embeddings
+</code></pre>
+<h2 id="api-search">API Search<a class="headerlink" href="#api-search" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>/search</code> now uses hybrid retrieval (BM25 + embeddings) with CrossEncoder reranking and returns <code>quote</code> and <code>snippet</code> fields.</li>
+<li>Configure models via env vars above.</li>
+<li>Models are warmed on startup to reduce first‑query latency.</li>
+</ul>
+<h2 id="run">Run<a class="headerlink" href="#run" title="Permanent link">&para;</a></h2>
+<pre><code class="language-bash">npm run api   # FastAPI on :8080
+npm run dev   # mkdocs site on :8000
+</code></pre>
 
 
 

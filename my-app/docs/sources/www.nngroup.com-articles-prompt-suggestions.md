@@ -12,7 +12,7 @@ sources:
   title: www.nngroup.com-articles-prompt-suggestions
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-17'
+  retrieved_at: '2025-08-18'
   policy: copy
 figures:
 - path: ../assets/www.nngroup.com/www.nngroup.com-articles-prompt-suggestions/83d11e4e618b.webp
@@ -79,7 +79,7 @@ figures:
   credit_name: www.nngroup.com
   credit_url: https://media.nngroup.com/media/videos/thumbnails/Your_AI_UX_Intern_Thumbnail.jpg.650x364_q75_autocrop_crop-smart_upscale.jpg
   license: internal-copy
-updated_at: '2025-08-17'
+updated_at: '2025-08-18'
 completed: false
 ---
 

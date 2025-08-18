@@ -12,7 +12,7 @@ sources:
   title: www.anthropic.com-engineering-building-effective-agents
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-17'
+  retrieved_at: '2025-08-18'
   policy: quote
 figures:
 - path: ../assets/www.anthropic.com/www.anthropic.com-engineering-building-effective-agents/e7b97fc35541.webp
@@ -55,7 +55,7 @@ figures:
   credit_name: www.anthropic.com
   credit_url: https://www.anthropic.com/_next/image?url=https%3A%2F%2Fwww-cdn.anthropic.com%2Fimages%2F4zrzovbb%2Fwebsite%2F4b9a1f4eb63d5962a6e1746ac26bbc857cf3474f-2400x1666.png&w=3840&q=75
   license: internal-copy
-updated_at: '2025-08-17'
+updated_at: '2025-08-18'
 completed: false
 ---
 

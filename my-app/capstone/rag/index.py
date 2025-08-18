@@ -21,6 +21,9 @@ INDEX_DIR.mkdir(parents=True, exist_ok=True)
 EMB_MODEL = os.getenv('EMBED_MODEL', 'sentence-transformers/all-MiniLM-L6-v2')
 RERANK_MODEL = os.getenv('RERANK_MODEL', 'cross-encoder/ms-marco-MiniLM-L-6-v2')
 
+# Cached models (initialized lazily)
+_cross_encoder_model = None  # type: ignore[var-annotated]
+
 @dataclass
 class Doc:
 	path: str
@@ -143,7 +146,7 @@ def query_embeddings(q: str, k: int = 5) -> List[dict]:
 def rerank(q: str, cands: List[dict], top_k: int = 5) -> List[dict]:
 	if not HAS_EMB or not cands:
 		return cands[:top_k]
-	model = CrossEncoder(RERANK_MODEL)
+	model = get_cross_encoder()
 	pairs = [(q, c['text']) for c in cands]
 	scores = model.predict(pairs).tolist()
 	scored = sorted(zip(cands, scores), key=lambda x: x[1], reverse=True)[:top_k]
@@ -165,6 +168,25 @@ def hybrid_search(q: str, k: int = 5) -> List[dict]:
 		seen[key] = True
 		combined.append(r)
 	return rerank(q, combined, top_k=k)
+
+
+def get_cross_encoder():
+	"""Return a cached CrossEncoder instance, creating it if necessary."""
+	global _cross_encoder_model
+	if _cross_encoder_model is None:
+		_cross_encoder_model = CrossEncoder(RERANK_MODEL)
+	return _cross_encoder_model
+
+
+def warm_models() -> None:
+	"""Optionally warm up heavy models to reduce first-query latency."""
+	if not HAS_EMB:
+		return
+	# Warm CrossEncoder
+	try:
+		_ = get_cross_encoder()
+	except Exception:
+		pass
 
 if __name__ == '__main__':
 	save_bm25()

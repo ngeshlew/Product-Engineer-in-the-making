@@ -12,10 +12,10 @@ sources:
   title: github.com-anthropics-anthropic-cookbook-tree-main-patterns-agents
   author: ''
   license: internal-copy
-  retrieved_at: '2025-08-17'
+  retrieved_at: '2025-08-18'
   policy: copy
 figures: []
-updated_at: '2025-08-17'
+updated_at: '2025-08-18'
 completed: false
 ---
 

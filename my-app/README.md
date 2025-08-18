@@ -78,5 +78,18 @@ Six files under `memory-bank/` serve as the durable context:
 ## Wiki
 Use pages in `wiki/` or publish to GitHub Wiki with `scripts/publish-wiki.sh`.
 
+## Capstone (RAG) quick run
+
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+export EMBED_MODEL=sentence-transformers/all-MiniLM-L6-v2
+export RERANK_MODEL=cross-encoder/ms-marco-MiniLM-L-6-v2
+npm run ingest
+python3 capstone/rag/index.py
+npm run api    # serves FastAPI on :8080
+npm run dev    # serves docs on :8000
+```
+
 ## License
 MIT
